@@ -11,3 +11,82 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#contenedorSlider{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+
+}
+
+#contenidoSlider{
+  color:white;
+  position: absolute;
+  top: 70%;
+  left: 5%;
+  transform: translate(0, 0);
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  #registerdiv{
+
+    width:80%;
+    margin:auto;
+    margin-top:4vh;
+    
+  
+  }
+  #registerseparador{
+
+    /*width: 50%;*/
+    width: 100%;
+    display: flex;
+
+  }
+  #registerspan{
+
+    width: 10%;
+
+  }
+  #registerinput{
+
+    width: 90%;
+
+  }
+
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  #registerdiv{
+
+    width:80%;
+    margin:auto;
+    margin-top:4vh;
+
+  
+  }
+  #registerseparador{
+
+    width: 100%;
+    display: flex;
+
+  }
+
+  #registerspan{
+
+    width: 10%;
+    display: flex;
+
+  }
+  #registerinput{
+
+    width: 90%;
+    display: flex;
+
+  }
+
+}
