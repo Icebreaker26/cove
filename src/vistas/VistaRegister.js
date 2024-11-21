@@ -30,8 +30,23 @@ const [contraseña, setContraseña] = useState("");
 
 const handleRegister = () =>{
 
-    console.log([nombre,cc,telefono,correo,direccion,ciudad,contraseña])
+    //console.log([nombre,cc,telefono,correo,direccion,ciudad,contraseña])
     //ACA SE DEBE AÑADIR LOGICA DE VALIDACION DE DATOS ANTES DE ENVIAR EL POST AL BACKEND
+
+    const campos =[
+
+        nombre,
+        cc,
+        telefono,
+        correo,
+        direccion,
+        ciudad,
+        contraseña
+
+    ]
+
+    if (campos.every(campo => campo)) {
+
     const NuevoUsuario = {
 
     idCliente:cc,
@@ -46,12 +61,15 @@ const handleRegister = () =>{
     estado:"ACTIVO",
     notas:[],
     solicitudes:[],
+    ventas:[],
     contraseña:contraseña
     }
 
-    CLIENTE.push(NuevoUsuario);
+    CLIENTE.push(NuevoUsuario); //REEMPLAZAR POR VALIDACION EN LA API
     console.log(CLIENTE)
-
+    }else{
+        console.log("Faltan campos")
+    }
 }
 
     return(

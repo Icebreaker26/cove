@@ -6,7 +6,7 @@ import { Navbar } from './componentes/Navbar';
 import { VistaRegister } from './vistas/VistaRegister';
 import { VistaSobreNosotros } from './vistas/VistaSobreNosotros';
 import { VistaPerfil } from './vistas/VistaPerfil';
-
+import { VistaVender } from './vistas/VistaVender';
 
 
 
@@ -50,6 +50,7 @@ function App() {
     idCliente:1087,
     nombre:"Alejandro",
     correo:"admin",
+    contraseña:"1234",
     telefono:"32174",
     direccion:"calle 16",
     ciudad:"Pereira",
@@ -81,6 +82,25 @@ function App() {
       idSolicitud:4,
       idCarro:9,
       estado:"ACTIVA"
+    }],
+    ventas:[{
+      idSolicitud:1,
+      nombrePropietario: "ALEJANDRO",
+      ccPropietario: "1087547010" ,
+      ciudadVehiculo: "PEREIRA",
+      marca: "BMW",
+      modelo: "Z4",
+      año: "2025",
+      version: "SDRIVE",
+      placa: "VFK 39A",
+      precio: "200000000" ,
+      color: "ROJO",
+      kilometraje:"200" ,
+      tipoCombustible:"GASOLINA" ,
+      transmision: "MANUAL" ,
+      puertas: "2",
+      descripcion:"TECHO PLEGABLE" ,
+      estado: "ACTIVA"
     }]
 
   }]);
@@ -104,10 +124,9 @@ function App() {
       fechaIngreso: new Date("2024-11-3"),
       descripcion:[],
       imagenes:[
-          "https://www.bmw.com.co/content/dam/bmw/marketLATAM/common/lista-de-precios/bmw-4-series-ag-models-equipment-mc-dynamics-03_890x501.jpg",
-
-          "https://www.bmw.com.co/content/dam/bmw/marketLATAM/bmw_com_co/landing/Secci%C3%B3n%20lista%20de%20precios%20BMW%20serie%203%20Sed%C3%A1n_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/common/all-models/i-series/i4/onepager/bmw-i4-edrive-40-onepager-ms-range.jpg"
+          "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
+          "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg",
+          "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
       ]
   
   },
@@ -128,9 +147,10 @@ function App() {
       fechaIngreso: new Date("2024-11-3"),
       descripcion:[],
       imagenes:[
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/bmw_com_co/landing/Secci%C3%B3n%20lista%20de%20precios%20BMW%20serie%203%20Sed%C3%A1n_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/common/lista-de-precios/bmw-4-series-ag-models-equipment-mc-dynamics-03_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/common/all-models/i-series/i4/onepager/bmw-i4-edrive-40-onepager-ms-range.jpg",
+        "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg",  
+        "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
+          "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
+        
       ]
 
   },
@@ -151,9 +171,11 @@ function App() {
       fechaIngreso: new Date("2024-11-3"),
       descripcion:[],
       imagenes:[
-          "https://www.bmw.com.co/content/dam/bmw/common/all-models/i-series/i4/onepager/bmw-i4-edrive-40-onepager-ms-range.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/bmw_com_co/landing/Secci%C3%B3n%20lista%20de%20precios%20BMW%20serie%203%20Sed%C3%A1n_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/common/lista-de-precios/bmw-4-series-ag-models-equipment-mc-dynamics-03_890x501.jpg",
+        "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640",
+
+          "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
+          "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg"
+        
       ]
 
   },
@@ -174,9 +196,11 @@ function App() {
       fechaIngreso: new Date("2024-11-3"),
       descripcion:[],
       imagenes:[
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/bmw_com_co/landing/Secci%C3%B3n%20lista%20de%20precios%20BMW%20serie%203%20Sed%C3%A1n_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/common/lista-de-precios/bmw-4-series-ag-models-equipment-mc-dynamics-03_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/common/all-models/i-series/i4/onepager/bmw-i4-edrive-40-onepager-ms-range.jpg",
+        "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640",
+
+      "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
+          "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg"
+        
       ]
 
   },
@@ -197,9 +221,10 @@ function App() {
       fechaIngreso: new Date("2024-11-3"),
       descripcion:[],
       imagenes:[
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/bmw_com_co/landing/Secci%C3%B3n%20lista%20de%20precios%20BMW%20serie%203%20Sed%C3%A1n_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/common/lista-de-precios/bmw-4-series-ag-models-equipment-mc-dynamics-03_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/common/all-models/i-series/i4/onepager/bmw-i4-edrive-40-onepager-ms-range.jpg",
+        "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg",
+      "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
+          "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
+       
       ]
 
   },
@@ -220,9 +245,10 @@ function App() {
       fechaIngreso: new Date("2024-11-3"),
       descripcion:[],
       imagenes:[
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/bmw_com_co/landing/Secci%C3%B3n%20lista%20de%20precios%20BMW%20serie%203%20Sed%C3%A1n_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/marketLATAM/common/lista-de-precios/bmw-4-series-ag-models-equipment-mc-dynamics-03_890x501.jpg",
-        "https://www.bmw.com.co/content/dam/bmw/common/all-models/i-series/i4/onepager/bmw-i4-edrive-40-onepager-ms-range.jpg",
+     "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
+          "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg",
+          "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
+      
       ]
 
   }
@@ -237,8 +263,39 @@ function App() {
   const [rg, setRg] = useState(false);// Register
   const [ab, setAb] = useState(false);//Sobre nosotros
   const [perfil, setPerfil] = useState(false);//Perfil
+  const [vender, setVender] = useState(false);//Vender
+
 
   const [sesion,setSesion] = useState(null);
+
+  /*La sesion debe contener los datos relevantes para cada rol, asi que:
+
+    CEO -> empleados, carros, clientes
+    vendedor -> carros, clientes
+    cliente -> carros
+  */
+
+  const sesionHandler = () =>{
+
+   /* if(usuario.rol==="cliente"){
+
+      //GET TODOS LOS CARROS EN UN OBJETO
+
+    }else if(usuario.rol==="empleado"){
+
+      //GET TODOS LOS CLIENTES
+      //GET TODOS LOS CARROS
+
+    }else if(usuario.rol==="admin"){
+
+      //GET TODOS LOS EMPLEADOS
+      //GET TODOS LOS CLIENTES
+      //GET TODOS LOS CARROS
+
+    }*/
+
+
+  }
 
   const inicio = () =>{
 
@@ -284,6 +341,11 @@ function App() {
     
   }
 
+  const abrirVender = () =>{
+    HandleCerrarTodo();
+    setVender(true);
+  }
+
   const HandleCerrarTodo =() =>{
 
     setVp(false);
@@ -291,19 +353,23 @@ function App() {
     setRg(false);
     setAb(false);
     setPerfil(false);
+    setVender(false);
+
 
   }
 
   return (
     <>
 
+    
     {nb && <Navbar inicio={inicio} sobreNosotros={sobreNosotros} sesion={sesion} abrirPerfil={abrirPerfil} cerrarSesion={cerrarSesion} login={login} register={register}/> }
     {vp && <VistaPrincipal sesion={sesion} setSesion={setSesion} abrirLogin={login} carros={CARRO} CLIENTE={CLIENTE}/>}
     {lg && <VistaLogin sesion={sesion} setSesion={setSesion} abrirRegistrarse={register} VistaPrincipal={inicio} CLIENTE={CLIENTE}/> }
     {rg && <VistaRegister sesion={sesion} setSesion={setSesion} abrirLogin={login} CLIENTE={CLIENTE}/>}
     {ab && <VistaSobreNosotros sesion={sesion} setSesion={setSesion}/>}
-    {perfil && <VistaPerfil sesion={sesion} CLIENTE={CLIENTE} carros={CARRO} setCLIENTE={setCLIENTE}/>}
-
+    {perfil && <VistaPerfil sesion={sesion} CLIENTE={CLIENTE} carros={CARRO} setCLIENTE={setCLIENTE} abrirVender={abrirVender}/>}
+    {vender && <VistaVender abrirVender={abrirVender} CLIENTE={CLIENTE} setCLIENTE={setCLIENTE} sesion={sesion} abrirPerfil={abrirPerfil}/>}
+  
     
     </>
   );

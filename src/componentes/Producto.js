@@ -52,7 +52,7 @@ const Producto = ({
     const handleEnviarSolicitudCompra = () => {
       
 
-      const ClienteSolicitud = CLIENTE.find(cliente => cliente.correo === sesion.usuario)
+      const ClienteSolicitud = CLIENTE.find(cliente => cliente.correo === sesion.correo)
     
       
       let nuevaId = ClienteSolicitud.solicitudes.length+1;

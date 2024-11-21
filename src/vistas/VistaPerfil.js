@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { SolicitudCliente } from "../componentes/SolicitudCliente";
+import { SolicitudClienteVenta } from '../componentes/SolicitudClienteVenta';
 
 
 
@@ -11,7 +12,8 @@ const VistaPerfil = ({
     sesion,
     CLIENTE,
     carros,
-    setCLIENTE
+    setCLIENTE,
+    abrirVender
 }) => {
 
     //Hacer petición al backend para traer los datos del usuario de la sesión, en este caso:
@@ -20,7 +22,7 @@ const VistaPerfil = ({
     const [datosPerfil, setDatosPerfil] = useState(null);
 
     const validarYAsignarDatosPerfil = () => {
-        const cliente = CLIENTE.find(c => c.correo === sesion.usuario);
+        const cliente = CLIENTE.find(c => c.correo === sesion.correo);
         if (cliente) {
           setDatosPerfil({
             ...cliente
@@ -51,6 +53,8 @@ return(
       <p className="country">{datosPerfil.correo}</p>
       <p className="stack">{datosPerfil.rol}</p>
       
+      <h1 className="btn btn-danger" onClick={abrirVender}>¿Quieres vender un carro?</h1>
+
     </div>
       <div className='skills'>
         <h2>MI INFORMACIÓN</h2>
@@ -101,7 +105,7 @@ return(
   
     <div>
 
-              <h1>MIS SOLICITUDES</h1>
+              <h1>MIS SOLICITUDES DE COMPRA</h1>
 
               {datosPerfil.solicitudes.map((solicitud,index)=> 
               
@@ -115,6 +119,19 @@ return(
               />              
               
               )}
+
+              <h1>MIS SOLICITUDES DE VENTA</h1>
+
+              {datosPerfil.ventas.map((solicitud,index)=> 
+
+              <SolicitudClienteVenta
+              solicitud={solicitud}
+              datosPerfil={datosPerfil}
+              />              
+
+              )}
+
+
 
     </div>
     

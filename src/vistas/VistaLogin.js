@@ -22,7 +22,29 @@ const VistaLogin = ({
 
       event.preventDefault(); // Evita el envío por defecto si no lo quieres
 
-      if (cuentas.usuario == usuario && cuentas.contraseña == contraseña){
+      const clienteEncontrado = CLIENTE.find(
+        (cliente) => cliente.correo === usuario && cliente.contraseña === contraseña
+      );
+      
+      if (clienteEncontrado) {
+        
+        console.log("Login succesfull!!")
+        setLogged(true);
+        console.log("cliente encontrado: "+ clienteEncontrado.correo)
+        setSesion(clienteEncontrado)
+        console.log("sesion:" + sesion)
+        VistaPrincipal();
+
+      } else {
+        
+        setIncorrecto(true)
+        setTimeout(() => {
+          setIncorrecto(false);
+        }, 5000); // Cambia el estado después de 5 segundos
+      }
+    };
+
+/*      if (cuentas.usuario == usuario && cuentas.contraseña == contraseña){
 
         console.log("Login succesfull!!")
         setLogged(true);
@@ -39,7 +61,7 @@ const VistaLogin = ({
       }
 
   }
-
+*/
 //ESTO DEBE IR EN LA BASE DE DATOS
   const cuentas ={
     usuario:"admin",

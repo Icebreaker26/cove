@@ -38,9 +38,6 @@ return(
                             <li class="nav-item">
                             <a class="nav-link active" aria-current="page" onClick={inicio}>Inicio</a>
                             </li>
-                            <li class="nav-item">
-                            <a class="nav-link" onClick={sobreNosotros}>Nosotros</a>
-                            </li>
 
                             
 
