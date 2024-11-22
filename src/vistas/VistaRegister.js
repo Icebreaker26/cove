@@ -7,6 +7,7 @@ import { FaCity } from "react-icons/fa";
 import ferrari from "../images/ferrari.jpg"
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useState } from "react";
+import axios from 'axios';
 
 
 
@@ -15,7 +16,7 @@ import { useState } from "react";
 
 
 
-const VistaRegister = ({abrirLogin,CLIENTE}) =>{
+const VistaRegister = ({abrirLogin,CLIENTE, setCLIENTE}) =>{
 
 const handleIniciarSesion = () => abrirLogin();
 
@@ -28,48 +29,49 @@ const [ciudad, setCiudad] = useState("");
 const [contraseña, setContraseña] = useState("");
 
 
-const handleRegister = () =>{
+const handleRegister = async () =>{
 
-    //console.log([nombre,cc,telefono,correo,direccion,ciudad,contraseña])
-    //ACA SE DEBE AÑADIR LOGICA DE VALIDACION DE DATOS ANTES DE ENVIAR EL POST AL BACKEND
-
-    const campos =[
-
-        nombre,
-        cc,
-        telefono,
-        correo,
-        direccion,
-        ciudad,
-        contraseña
-
-    ]
+  const campos =[nombre,cc,telefono,correo,direccion,ciudad,contraseña]
 
     if (campos.every(campo => campo)) {
 
-    const NuevoUsuario = {
-
-    idCliente:cc,
-    nombre:nombre,
-    correo:correo,
-    telefono:telefono,
-    direccion:direccion,
-    ciudad:ciudad,
-    rol:"CLIENTE",
-    fechaNacimiento: new Date("2004-8-26"),
-    fechaRegistro: new Date("2024-11-4"),
-    estado:"ACTIVO",
-    notas:[],
-    solicitudes:[],
-    ventas:[],
-    contraseña:contraseña
-    }
-
+        const NuevoUsuario = {
+            idCliente: parseInt(cc, 10), // Convertir a número entero
+            nombre: nombre.trim(), // Eliminar espacios adicionales
+            correo: correo.trim(), // Asegurar formato limpio
+            telefono: telefono.trim(), // Eliminar espacios adicionales
+            direccion: direccion.trim(),
+            ciudad: ciudad.trim(),
+            rol: "CLIENTE", // Rol fijo
+            fechaNacimiento: new Date("2004-08-26"), // Formato correcto de fecha
+            fechaRegistro: new Date(), // Fecha actual
+            estado: "ACTIVO", // Estado predeterminado
+            notas: [], // Arreglo vacío válido
+            solicitudes: [], // Arreglo vacío válido
+            ventas: [], // Arreglo vacío válido
+            contraseña: contraseña.trim(), // Limpiar la contraseña
+          };
+          
     CLIENTE.push(NuevoUsuario); //REEMPLAZAR POR VALIDACION EN LA API
     console.log(CLIENTE)
+
+    try {
+        // Enviar el nuevo cliente al servidor
+        const response = await axios.post('http://localhost:8000/users', NuevoUsuario);
+        setCLIENTE([...CLIENTE, response.data]); // Agregar el nuevo cliente al estado
+      } catch (error) {
+        console.error('Error al agregar el cliente:', error);
+      }
+
+      abrirLogin()
+
     }else{
         console.log("Faltan campos")
     }
+
+
+  
+
 }
 
     return(

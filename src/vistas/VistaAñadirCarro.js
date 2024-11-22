@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { IoPersonCircle } from "react-icons/io5";
 import { FaRegIdCard } from "react-icons/fa";
@@ -17,15 +18,7 @@ import { BsSpeedometer } from "react-icons/bs";
 import axios from 'axios';
 
 
-const VistaVender = ({
-    abrirVender,
-    CLIENTE,
-    setCLIENTE,
-    sesion,
-    abrirPerfil
-
-}) =>{
-
+const VistaAñadirCarro = () =>{
 
     const [nombrePropietario, setNombrePropietario] = useState();
     const [ccPropietario, setCCPropietario] = useState("");
@@ -247,4 +240,5 @@ const VistaVender = ({
     )
 }
 
-export {VistaVender}
+export{VistaAñadirCarro}
+

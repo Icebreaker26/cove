@@ -1,0 +1,23 @@
+#compras{
+
+
+    padding: 0px;
+    background-color: #28223F;
+    color: #B3BBCD;
+    font-family: "Poppins", sans-serif;
+  width: 100vw; 
+    margin: 0 auto;
+  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+  text-align: center;
+}
+
+#imagenPerfil{
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    border: .2rem solid #03BFCB;
+    display: block;
+    margin: auto;
+    
+  }
+  

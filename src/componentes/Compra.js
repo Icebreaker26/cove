@@ -31,9 +31,9 @@ const Compra = ({
 
     return(
     <>  
-        <div key={idCliente} class="card"  style={{width: "100%",display:"inline-block" , textAlign:"center", borderStyle:"solid", borderColor:"blue" }} onClick={handleShow}>
-                 <div class="card-body">            
-                 <FaUserTie style={{width:"10%", height:"auto"}}/>
+        <div key={idCliente}   style={{width: "100%",display:"inline-block" , textAlign:"center" }} onClick={handleShow}>
+                 <div>            
+                 <img id='imagenPerfil' src="https://steamuserimages-a.akamaihd.net/ugc/94979365062922910/2EEBE4C9268266B4041A3D5514F6FDD3983223CC/?imw=200&imh=200&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" alt="" />
                     <h1>{nombre}</h1>
                     <h3>{correo}</h3>
 
@@ -42,7 +42,7 @@ const Compra = ({
                             const carro = carros.find((carro) => carro.idCarro === solicitud.idCarro);
 
                             return (
-                                <div key={solicitud.idSolicitud} class="card btn btn-outline-primary"  style={{width: "100%",display:"inline-block" , textAlign:"center", borderStyle:"solid", borderColor:"blue" }}>
+                                <div key={solicitud.idSolicitud} class=""  style={{width: "100%",display:"inline-block" , textAlign:"center", borderStyle:"solid", borderColor:"blue" }}>
                                     {carro ? (
                                     <>
                                     <div class="card-body"> 

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VistaPrincipal } from './vistas/VistaPrincipal';
 import { VistaLogin } from './vistas/VistaLogin';
 import { Navbar } from './componentes/Navbar';
@@ -12,6 +12,8 @@ import { VistaInventario } from './vistas/VistaInventario';
 import { VistaClientes } from './vistas/VistaClientes';
 import { VistaCompras } from './vistas/VistaCompras';
 import { VistaVentas } from './vistas/VistaVentas';
+import axios from 'axios';
+
 
 function App() {
 
@@ -47,7 +49,8 @@ function App() {
 
   }]
 
-  const [CLIENTE, setCLIENTE] = useState([{
+  const [CLIENTE, setCLIENTE] = useState(
+    /*[{
 
     idCliente:1087,
     nombre:"Alejandro",
@@ -105,10 +108,10 @@ function App() {
       estado: "ACTIVA"
     }]
 
-  }]);
+  }]*/);
   
   const [CARRO, setCARRO] = useState(
-  [
+  [/*
   {
       idCarro:1,
       marca:"BMW",
@@ -265,7 +268,7 @@ function App() {
 
   }
 
-  ])
+  */])
 
 
 
@@ -285,6 +288,34 @@ function App() {
 
 
   const [sesion,setSesion] = useState(null);
+
+  useEffect(() => {
+    // Obtener los clientes del servidor
+    const fetchClientes = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/users');
+        setCLIENTE(response.data); // Actualiza el estado con los datos recibidos
+      } catch (error) {
+        console.error('Error al obtener los clientes:', error);
+      }
+    };
+
+    fetchClientes();
+  }, []);
+
+  useEffect(() => {
+    // Obtener los clientes del servidor
+    const fetchCarros = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/cars');
+        setCARRO(response.data); // Actualiza el estado con los datos recibidos
+      } catch (error) {
+        console.error('Error al obtener los carros:', error);
+      }
+    };
+
+    fetchCarros();
+  }, []);
 
   /*La sesion debe contener los datos relevantes para cada rol, asi que:
 
@@ -408,9 +439,9 @@ function App() {
 
     
     {nb && <Navbar inicio={inicio} sobreNosotros={sobreNosotros} sesion={sesion} abrirPerfil={abrirPerfil} cerrarSesion={cerrarSesion} login={login} register={register} abrirAdmin={abrirAdmin}/> }
-    {vp && <VistaPrincipal sesion={sesion} setSesion={setSesion} abrirLogin={login} carros={CARRO} CLIENTE={CLIENTE}/>}
+    {vp && <VistaPrincipal sesion={sesion} setSesion={setSesion} abrirLogin={login} carros={CARRO} CLIENTE={CLIENTE} setCLIENTE={setCLIENTE}/>}
     {lg && <VistaLogin sesion={sesion} setSesion={setSesion} abrirRegistrarse={register} VistaPrincipal={inicio} CLIENTE={CLIENTE}/> }
-    {rg && <VistaRegister sesion={sesion} setSesion={setSesion} abrirLogin={login} CLIENTE={CLIENTE}/>}
+    {rg && <VistaRegister sesion={sesion} setSesion={setSesion} abrirLogin={login} CLIENTE={CLIENTE} setCLIENTE={setCLIENTE}/>}
     {ab && <VistaSobreNosotros sesion={sesion} setSesion={setSesion}/>}
     {perfil && <VistaPerfil sesion={sesion} CLIENTE={CLIENTE} carros={CARRO} setCLIENTE={setCLIENTE} abrirVender={abrirVender}/>}
     {vender && <VistaVender abrirVender={abrirVender} CLIENTE={CLIENTE} setCLIENTE={setCLIENTE} sesion={sesion} abrirPerfil={abrirPerfil}/>}

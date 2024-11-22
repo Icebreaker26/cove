@@ -12,9 +12,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import {ImagenCarrusel} from './ImagenCarrusel';
 import { FaCommentsDollar } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
-
-
-
+import axios from 'axios';
 
 
 
@@ -36,7 +34,9 @@ const Producto = ({
     abrirLogin,
     CLIENTE,
     carros,
-    status
+    status,
+    setCLIENTE
+   
 
     }) => {
 
@@ -50,7 +50,7 @@ const Producto = ({
 
     const handleCloseSolicitudCompra = () => setShowSolicitudCompra(false);
 
-    const handleEnviarSolicitudCompra = () => {
+    /*const handleEnviarSolicitudCompra =  async () => {
       
 
       const ClienteSolicitud = CLIENTE.find(cliente => cliente.correo === sesion.correo)
@@ -66,6 +66,17 @@ const Producto = ({
 
       }
 
+
+      console.log(ClienteSolicitud._id)
+      
+      // Realizar la solicitud PUT al backend para actualizar las solicitudes del cliente
+      const response = await axios.put(
+      `http://localhost:8000/users/${ClienteSolicitud._id}`, // URL con la ID del cliente
+      {
+        solicitudes: [...ClienteSolicitud.solicitudes, NuevaSolicitud], // Agregar la nueva solicitud
+      }
+    );
+
       const pushSolicitud = ClienteSolicitud.solicitudes.push(NuevaSolicitud)
 
       console.log(ClienteSolicitud);
@@ -80,8 +91,62 @@ const Producto = ({
 
       
     
-    }
+    }*/
+        const handleEnviarSolicitudCompra = async () => {
+          try {
+            // Encontrar al cliente actual por el correo en la sesión
+            const ClienteSolicitud = CLIENTE.find((cliente) => cliente.correo === sesion.correo);
+        
+            if (!ClienteSolicitud) {
+              console.error("No se encontró el cliente con el correo proporcionado.");
+              return;
+            }
+        
+            // Crear una nueva solicitud
+            const nuevaId = ClienteSolicitud.solicitudes.length + 1;
+            const NuevaSolicitud = {
+              idSolicitud: nuevaId,
+              idCarro: id, // ID del carro (asegúrate de que este sea un valor válido)
+              estado: "ACTIVA",
+            };
+        
+            // Actualizar solicitudes localmente
+            const solicitudesActualizadas = [...ClienteSolicitud.solicitudes, NuevaSolicitud];
+        
+            // Realizar la solicitud PUT al backend para actualizar las solicitudes del cliente
+            const response = await axios.put(
+              `http://localhost:8000/users/${ClienteSolicitud._id}`, // URL con la ID del cliente
+              {
+                solicitudes: solicitudesActualizadas, // Enviar las solicitudes actualizadas
+              }
+            );
+        
+            // Actualizar el estado local con los datos recibidos del servidor
+            const clienteActualizado = response.data;
+            const pushSolicitud = ClienteSolicitud.solicitudes.push(NuevaSolicitud)
 
+            // Asegurarse de que CLIENTE se actualiza correctamente
+            setCLIENTE((prevCLIENTE) =>
+              prevCLIENTE.map((cliente) =>
+                cliente._id === clienteActualizado._id ? clienteActualizado : cliente
+              )
+            );
+        
+            console.log("Solicitud enviada correctamente:", clienteActualizado);
+          } catch (error) {
+            console.error("Error al enviar la solicitud de compra:", error.response?.data || error.message);
+          }
+        
+           handleCloseSolicitudCompra();
+
+        setAlertCompra(true)
+        setTimeout(() => {
+        setAlertCompra(false);
+        }, 5000); // Cambia el estado después de 5 segundos
+
+      
+        };
+        
     const HandleComprar = () =>{
 
       if(sesion){

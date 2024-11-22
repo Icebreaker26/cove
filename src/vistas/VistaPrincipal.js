@@ -8,7 +8,8 @@ const VistaPrincipal = ({
     setSesion,
     abrirLogin,
     carros,
-    CLIENTE
+    CLIENTE,
+    setCLIENTE
 }) =>{
 
     return(
@@ -16,7 +17,7 @@ const VistaPrincipal = ({
         <>
 
         <Slider/>
-        <Productos sesion={sesion} abrirLogin={abrirLogin} carros={carros} CLIENTE={CLIENTE}/>
+        <Productos sesion={sesion} abrirLogin={abrirLogin} carros={carros} CLIENTE={CLIENTE} setCLIENTE={setCLIENTE}/>
         <Footer/>
         
         </>

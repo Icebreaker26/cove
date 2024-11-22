@@ -2,6 +2,9 @@ import { Producto } from "../componentes/Producto"
 import { ProductoInventario } from "../componentes/ProductoInventario"
 import { useState } from 'react';
 
+
+import "../estilos/VistaInventario.css"
+
 const VistaInventario = ({
     carros,
     setCARRO
@@ -10,6 +13,7 @@ const VistaInventario = ({
 
     return(
         <>
+        <div id="inventario"> 
         <h1>INVENTARIO</h1>
         {carros.map((carro)=>
             
@@ -31,13 +35,14 @@ const VistaInventario = ({
             carros={carros}
             status={carro.status}
             setCARRO={setCARRO}
+            _id={carro._id}
 
             
             />
 
             
             )}
-
+</div>
         </>
     )
 

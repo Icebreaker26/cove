@@ -4,7 +4,8 @@ const Productos = ({
   sesion,
   abrirLogin,
   carros,
-  CLIENTE
+  CLIENTE,
+  setCLIENTE
 }) =>{
 
 
@@ -39,7 +40,8 @@ const Productos = ({
             CLIENTE={CLIENTE}
             carros={carros}
             status={carro.status}
-            
+            setCLIENTE ={setCLIENTE}
+        
             />
 
             

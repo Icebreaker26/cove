@@ -86,19 +86,21 @@ return(
         </tr>
         <tr>
           <td>Fecha de Nacimiento</td>
-          <td>{datosPerfil.fechaNacimiento.toLocaleDateString('es-ES', {
-                day: '2-digit',
-                month: 'long',
-                year: 'numeric'
-              })}</td>
+          <td>{datosPerfil.fechaNacimiento 
+          //.toLocaleDateString('es-ES', {
+            //    day: '2-digit',
+             //   month: 'long',
+               // year: 'numeric'})
+               }</td>
         </tr>
         <tr>
           <td>Fecha de Registro</td>
-          <td>{datosPerfil.fechaRegistro.toLocaleDateString('es-ES', {
+          <td>{datosPerfil.fechaRegistro
+          /*.toLocaleDateString('es-ES', {
                 day: '2-digit',
                 month: 'long',
                 year: 'numeric'
-              })}</td>
+              })*/}</td>
         </tr>
       </tbody>
     </Table>

@@ -14,6 +14,8 @@ import { FaCommentsDollar } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
+import axios from 'axios';
+
 
 
 
@@ -22,6 +24,7 @@ import { FaRegEdit } from "react-icons/fa";
 
 
 const ProductoInventario = ({
+   _id,
     id,
     modelo, 
     marca, 
@@ -52,17 +55,37 @@ const ProductoInventario = ({
     const [reRender, setReRender] = useState(false);
 
 
-   const handleEliminar = () =>{
+   const handleEliminar = async () =>{
 
       const carrosActualizados = carros.map((carro) =>
         carro.idCarro === id ? { ...carro, status: "INACTIVO" } : carro
       );
     
-      setCARRO(carrosActualizados); // Actualiza el estado del arreglo
+      //setCARRO(carrosActualizados); // Actualiza el estado del arreglo
+      
+      try {
+        // Realizar la solicitud PUT al servidor con la ID del carro
+        const response = await axios.put(`http://localhost:8000/cars/${_id}`, {
+          status: "INACTIVO",
+        });
+    
+        // Actualizar el estado con la respuesta del servidor
+        setCARRO(carrosActualizados);
+    
+        console.log("Carro actualizado correctamente:", response.data);
+      } catch (error) {
+        console.error("Error al eliminar el carro:", error.response?.data || error.message);
+      }
       setReRender(!reRender);
 
+    };
 
-    }
+
+
+
+
+
+    
 
     
     return(
