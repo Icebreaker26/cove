@@ -12,13 +12,16 @@ import Carousel from 'react-bootstrap/Carousel';
 import {ImagenCarrusel} from './ImagenCarrusel';
 import { FaCommentsDollar } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
 
 
 
 
 
 
-const Producto = ({
+
+const ProductoInventario = ({
     id,
     modelo, 
     marca, 
@@ -32,11 +35,10 @@ const Producto = ({
     transmision,
     puertas,
     imagenes,
-    sesion,
-    abrirLogin,
-    CLIENTE,
     carros,
-    status
+    setCARRO,
+    status,
+    renderizar
 
     }) => {
 
@@ -47,53 +49,18 @@ const Producto = ({
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [reRender, setReRender] = useState(false);
 
-    const handleCloseSolicitudCompra = () => setShowSolicitudCompra(false);
 
-    const handleEnviarSolicitudCompra = () => {
-      
+   const handleEliminar = () =>{
 
-      const ClienteSolicitud = CLIENTE.find(cliente => cliente.correo === sesion.correo)
+      const carrosActualizados = carros.map((carro) =>
+        carro.idCarro === id ? { ...carro, status: "INACTIVO" } : carro
+      );
     
-      
-      let nuevaId = ClienteSolicitud.solicitudes.length+1;
+      setCARRO(carrosActualizados); // Actualiza el estado del arreglo
+      setReRender(!reRender);
 
-      let NuevaSolicitud = {
-
-        idSolicitud:nuevaId,
-        idCarro:id,
-        estado:"ACTIVA"
-
-      }
-
-      const pushSolicitud = ClienteSolicitud.solicitudes.push(NuevaSolicitud)
-
-      console.log(ClienteSolicitud);
-      console.log(NuevaSolicitud);
-
-      handleCloseSolicitudCompra();
-
-        setAlertCompra(true)
-        setTimeout(() => {
-        setAlertCompra(false);
-        }, 5000); // Cambia el estado después de 5 segundos
-
-      
-    
-    }
-
-    const HandleComprar = () =>{
-
-      if(sesion){
-
-        setShowSolicitudCompra(true);
-
-
-      }else{
-        handleClose();
-        abrirLogin();
-        
-      }
 
     }
 
@@ -102,7 +69,8 @@ const Producto = ({
 
       
         <>
-        {status == "ACTIVO" ? (<>
+                {status === "ACTIVO" && <>
+
             <div key={id} class="card" style={{width: "32%",display:"inline-block" , margin:"5px", textAlign:"center" }} onClick={handleShow}>
                 <img src={imagenes[0]} class="card-img-top" alt="..."/>
                  <div class="card-body">
@@ -166,8 +134,8 @@ const Producto = ({
 
                                             </div>
 
-                                            <a  href='https://api.whatsapp.com/send/?phone=3217467837&text&type=phone_number&app_absent=0' target='_blank'><h1 class="btn btn-success"style={{width:"50%"}}><FaWhatsapp /> PREGUNTAR</h1></a>
-                                             <h1 class="btn btn-info" style={{width:"50%"}} onClick={HandleComprar}><FaCommentsDollar /> COMPRAR</h1>
+                                            <h1 class="btn btn-warning" style={{width:"50%"}}><FaRegEdit />EDITAR</h1>
+                                             <h1 class="btn btn-danger" style={{width:"50%"}} onClick={handleEliminar}><FaTrash />ELIMINAR</h1>
 
                                            
                                         </div>
@@ -255,14 +223,19 @@ const Producto = ({
       </Modal>
 
 
-      <Modal show={showSolicitudCompra} onHide={handleCloseSolicitudCompra}         size="md"      >
+      <Modal show={showSolicitudCompra} //onHide={}
+               size="md"      >
         <Modal.Header closeButton>
           <Modal.Title>COMPRAR</Modal.Title>
         </Modal.Header>
         <Modal.Body>
                     <h1 style={{textAlign:"center"}}>¿DESEAS ENVIAR UNA SOLICITUD DE COMPRA PARA {marca} {modelo}?</h1>
-                    <h1 class="btn btn-danger"style={{width:"50%"}} onClick={handleCloseSolicitudCompra}>CANCELAR</h1>
-                    <h1 class="btn btn-success" style={{width:"50%"}} onClick={handleEnviarSolicitudCompra}>ACEPTAR</h1>
+                    <h1 class="btn btn-danger"style={{width:"50%"}} 
+                   // onClick={handleCloseSolicitudCompra}
+                    >CANCELAR</h1>
+                    <h1 class="btn btn-success" style={{width:"50%"}} 
+                    //onClick={handleEnviarSolicitudCompra}
+                    >ACEPTAR</h1>
 
 
         </Modal.Body>
@@ -270,10 +243,12 @@ const Producto = ({
           
         </Modal.Footer>
       </Modal>
-      </>) : (<></>) }
+
+      </>}
+  
 </>
 
     )
 }
 
-export {Producto}
+export {ProductoInventario}

@@ -1,5 +1,6 @@
 import { FaCar } from "react-icons/fa";
 import { IoMdPersonAdd } from "react-icons/io";
+import cove from '../images/cove.png'
 
 
 
@@ -10,7 +11,8 @@ const Navbar = ({
     abrirPerfil,
     cerrarSesion,
     login,
-    register
+    register,
+    abrirAdmin
 }) =>{
 
 
@@ -24,8 +26,9 @@ return(
                             <a class="navbar-brand" href="#">
                             {//<img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"/>
                             }
-                            <FaCar style={{color:"red", fontSize:"3vw", marginRight:"10px"}} /> 
-                            Los Carros de Alejo
+                            {/*<FaCar style={{color:"red", fontSize:"3vw", marginRight:"10px"}} /> 
+                            Los Carros de Alejo*/}
+                            <img src={cove} style={{width:"20%"}}/>
                             </a>
                         </div>
 
@@ -39,6 +42,21 @@ return(
                             <a class="nav-link active" aria-current="page" onClick={inicio}>Inicio</a>
                             </li>
 
+                            {sesion ? (
+                                sesion.rol === "ADMIN" ? (
+
+                                    <li class="nav-item" style={{marginLeft:"1vw"}}>
+                                    <a class="nav-link btn btn-primary text-dark" onClick={abrirAdmin} >ADMINISTRAR
+                                    </a>
+                                    </li>
+                                    
+                                ) : (
+                                    <></>
+                                )
+                                ) : (
+                                    <></>
+                                )}
+                            
                             
 
                             {sesion 
@@ -65,6 +83,7 @@ return(
                             </a>
                             </li>
                             </>}
+                            
                         </ul>
                         </div>
                         </div>

@@ -32,7 +32,6 @@ const VistaLogin = ({
         setLogged(true);
         console.log("cliente encontrado: "+ clienteEncontrado.correo)
         setSesion(clienteEncontrado)
-        console.log("sesion:" + sesion)
         VistaPrincipal();
 
       } else {

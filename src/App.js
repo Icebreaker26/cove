@@ -7,9 +7,11 @@ import { VistaRegister } from './vistas/VistaRegister';
 import { VistaSobreNosotros } from './vistas/VistaSobreNosotros';
 import { VistaPerfil } from './vistas/VistaPerfil';
 import { VistaVender } from './vistas/VistaVender';
-
-
-
+import { VistaAdmin } from './vistas/VistaAdmin';
+import { VistaInventario } from './vistas/VistaInventario';
+import { VistaClientes } from './vistas/VistaClientes';
+import { VistaCompras } from './vistas/VistaCompras';
+import { VistaVentas } from './vistas/VistaVentas';
 
 function App() {
 
@@ -54,7 +56,7 @@ function App() {
     telefono:"32174",
     direccion:"calle 16",
     ciudad:"Pereira",
-    rol:"CLIENTE",
+    rol:"ADMIN",
     fechaNacimiento: new Date("2004-8-26"),
     fechaRegistro: new Date("2024-11-4"),
     estado:"ACTIVO",
@@ -105,7 +107,7 @@ function App() {
 
   }]);
   
-  const CARRO =
+  const [CARRO, setCARRO] = useState(
   [
   {
       idCarro:1,
@@ -127,7 +129,9 @@ function App() {
           "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
           "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg",
           "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
-      ]
+      ],
+      status:"ACTIVO"
+
   
   },
   {
@@ -151,7 +155,9 @@ function App() {
         "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
           "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
         
-      ]
+      ],
+      status:"ACTIVO"
+
 
   },
   {
@@ -176,7 +182,8 @@ function App() {
           "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
           "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg"
         
-      ]
+      ],
+      status:"ACTIVO"
 
   },
   {
@@ -201,7 +208,9 @@ function App() {
       "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
           "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg"
         
-      ]
+      ],
+      status:"ACTIVO"
+
 
   },
   {
@@ -225,8 +234,9 @@ function App() {
       "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-z4-m40i-6mt-251-66f43f8382990.jpg?crop=0.668xw:0.562xh;0.0927xw,0.319xh&resize=2048:*",
           "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
        
-      ]
-
+      ],
+      status:"ACTIVO"
+     
   },
   {
       idCarro:6,
@@ -249,11 +259,13 @@ function App() {
           "https://autosdeprimera.com/wp-content/uploads/2022/10/bmw-z4-2023-a.jpg",
           "https://www.usnews.com/object/image/0000018e-f7e6-d0f4-a79e-f7fe9cc20001/24-bmw-z4-ext1.jpg?update-time=1713556239203&size=responsive640"
       
-      ]
+      ],
+      status:"INACTIVO"
+
 
   }
 
-  ]
+  ])
 
 
 
@@ -264,6 +276,12 @@ function App() {
   const [ab, setAb] = useState(false);//Sobre nosotros
   const [perfil, setPerfil] = useState(false);//Perfil
   const [vender, setVender] = useState(false);//Vender
+  const [viewAdmin,setViewAdmin] = useState(false); //Panel administración
+  const [viewInventario,setViewInventario] = useState(false); //Panel administración
+  const [viewClientes,setViewClientes] = useState(false); //Panel administración
+  const [viewCompras,setViewCompras] = useState(false); //Panel administración
+  const [viewVentas,setViewVentas] = useState(false); //Panel administración
+
 
 
   const [sesion,setSesion] = useState(null);
@@ -346,6 +364,28 @@ function App() {
     setVender(true);
   }
 
+  const abrirAdmin = () =>{
+    HandleCerrarTodo();
+    setViewAdmin(true);
+  }
+
+  const abrirInventario = () =>{
+    HandleCerrarTodo();
+    setViewInventario(true);
+  }
+
+  const abrirClientes = () =>{
+    HandleCerrarTodo();
+    setViewClientes(true);
+  }
+  const abrirCompras = () =>{
+    HandleCerrarTodo();
+    setViewCompras(true);
+  }
+  const abrirVentas = () =>{
+    HandleCerrarTodo();
+    setViewVentas(true);
+  }
   const HandleCerrarTodo =() =>{
 
     setVp(false);
@@ -354,6 +394,11 @@ function App() {
     setAb(false);
     setPerfil(false);
     setVender(false);
+    setViewAdmin(false);
+    setViewInventario(false);
+    setViewClientes(false);
+    setViewCompras(false);
+    setViewVentas(false);
 
 
   }
@@ -362,15 +407,18 @@ function App() {
     <>
 
     
-    {nb && <Navbar inicio={inicio} sobreNosotros={sobreNosotros} sesion={sesion} abrirPerfil={abrirPerfil} cerrarSesion={cerrarSesion} login={login} register={register}/> }
+    {nb && <Navbar inicio={inicio} sobreNosotros={sobreNosotros} sesion={sesion} abrirPerfil={abrirPerfil} cerrarSesion={cerrarSesion} login={login} register={register} abrirAdmin={abrirAdmin}/> }
     {vp && <VistaPrincipal sesion={sesion} setSesion={setSesion} abrirLogin={login} carros={CARRO} CLIENTE={CLIENTE}/>}
     {lg && <VistaLogin sesion={sesion} setSesion={setSesion} abrirRegistrarse={register} VistaPrincipal={inicio} CLIENTE={CLIENTE}/> }
     {rg && <VistaRegister sesion={sesion} setSesion={setSesion} abrirLogin={login} CLIENTE={CLIENTE}/>}
     {ab && <VistaSobreNosotros sesion={sesion} setSesion={setSesion}/>}
     {perfil && <VistaPerfil sesion={sesion} CLIENTE={CLIENTE} carros={CARRO} setCLIENTE={setCLIENTE} abrirVender={abrirVender}/>}
     {vender && <VistaVender abrirVender={abrirVender} CLIENTE={CLIENTE} setCLIENTE={setCLIENTE} sesion={sesion} abrirPerfil={abrirPerfil}/>}
-  
-    
+    {viewAdmin && <VistaAdmin abrirInventario={abrirInventario} abrirClientes={abrirClientes} abrirCompras={abrirCompras} abrirVentas={abrirVentas}/>}
+    {viewInventario && <VistaInventario carros={CARRO} setCARRO={setCARRO}/>}
+    {viewClientes && <VistaClientes CLIENTE={CLIENTE}/>}
+    {viewCompras && <VistaCompras CLIENTE={CLIENTE} carros={CARRO}/>}
+    {viewVentas && <VistaVentas CLIENTE={CLIENTE} carros={CARRO}/>}
     </>
   );
 }

@@ -1,25 +1,19 @@
-import { Producto } from "./Producto"
+import { Producto } from "../componentes/Producto"
+import { ProductoInventario } from "../componentes/ProductoInventario"
+import { useState } from 'react';
 
-const Productos = ({
-  sesion,
-  abrirLogin,
-  carros,
-  CLIENTE
+const VistaInventario = ({
+    carros,
+    setCARRO
 }) =>{
 
 
-
-
     return(
-
         <>
-        <h1 style={{textAlign:"center"}}>¡Los favoritos de la colección!</h1>
-
-        <div style={{width:"90vw", margin:"auto"}}>
-
+        <h1>INVENTARIO</h1>
         {carros.map((carro)=>
             
-            <Producto 
+            <ProductoInventario 
             
             id={carro.idCarro} 
             modelo={carro.modelo} 
@@ -34,21 +28,19 @@ const Productos = ({
             transmision={carro.transmision}
             puertas={carro.puertas}
             imagenes={carro.imagenes}
-            sesion={sesion}
-            abrirLogin={abrirLogin}
-            CLIENTE={CLIENTE}
             carros={carros}
             status={carro.status}
+            setCARRO={setCARRO}
+
             
             />
 
             
             )}
 
-        </div>
-
         </>
+    )
 
-    )}
+}
 
-export {Productos}
+export {VistaInventario}
